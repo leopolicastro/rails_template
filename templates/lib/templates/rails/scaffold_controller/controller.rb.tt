@@ -4,7 +4,7 @@ class <%= controller_class_name %>Controller < ApplicationController
 
   # GET <%= route_url %>
   def index
-    @pagy, @<%= plural_table_name %> = pagy(<%= class_name %>.all)
+    @pagy, @<%= plural_table_name %> = pagy(<%= class_name %>.sort_by_params(sort_column(<%= class_name %>), sort_direction))
   end
 
   # GET <%= route_url %>/1 or <%= route_url %>/1.json

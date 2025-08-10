@@ -32,6 +32,7 @@ after_bundle do
   apply "scripts/authentication.rb"
   apply "scripts/madmin.rb"
   apply "scripts/mission_control_jobs.rb"
+  apply "scripts/sorting.rb"
   apply "scripts/scaffolds.rb"
   apply "scripts/layout.rb"
   apply "scripts/navbar.rb"
