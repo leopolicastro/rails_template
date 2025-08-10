@@ -1,3 +1,4 @@
 --css=tailwind
 --skip-rubocop
---template=~/software/rails_templates/gem_template.rb
+--template=https://raw.githubusercontent.com/leopolicastro/rails_template/main/template.rb
+
