@@ -1,0 +1,3 @@
+--css=tailwind
+--skip-rubocop
+--template=~/software/rails_templates/gem_template.rb
