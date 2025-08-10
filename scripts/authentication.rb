@@ -1,4 +1,5 @@
-include_auth = ask("Do you want to include authentication? (y/n)")
+# Get configuration from global config set in interactive_setup.rb
+include_auth = $template_config[:include_auth]
 
 if include_auth.downcase.start_with?("y")
   generate "authentication"

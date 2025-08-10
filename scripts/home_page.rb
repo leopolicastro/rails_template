@@ -1,7 +1,5 @@
-controller_name = ask("What would you like to call your main controller? (Home/Dashboard/Main or custom name) [Default: Home]:")
-
-# Default to Home if they just press enter
-controller_name = "Home" if controller_name.strip.empty?
+# Get configuration from global config set in interactive_setup.rb
+controller_name = $template_config[:controller_name]
 
 # Capitalize the first letter to ensure proper class naming
 controller_name = controller_name.strip.capitalize

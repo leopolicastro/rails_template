@@ -1,4 +1,5 @@
-include_jobs = ask("Do you want to install Mission Control Jobs for background job management? (y/n)")
+# Get configuration from global config set in interactive_setup.rb
+include_jobs = $template_config[:include_jobs]
 
 if include_jobs.downcase.start_with?("y")
   say "Installing Mission Control Jobs gem..."

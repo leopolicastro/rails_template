@@ -1,4 +1,5 @@
-include_action_text = ask("Do you want to set up Action Text? (y/n)")
+# Get configuration from global config set in interactive_setup.rb
+include_action_text = $template_config[:include_action_text]
 
 if include_action_text.downcase.start_with?("y")
   rails_command "action_text:install"

@@ -20,6 +20,9 @@ end
 
 setup_template
 
+# Collect all user preferences upfront
+apply "scripts/interactive_setup.rb"
+
 apply "scripts/gems.rb"
 apply "scripts/rubocop_file.rb"
 

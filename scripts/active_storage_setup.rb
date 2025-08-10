@@ -1,7 +1,8 @@
-include_storage = ask("Do you want to set up Active Storage? (y/n)")
+# Get configuration from global config set in interactive_setup.rb
+include_storage = $template_config[:include_storage]
 
 if include_storage.downcase.start_with?("y")
-  storage_type = ask("Do you want to use local storage or S3? (local/s3)")
+  storage_type = $template_config[:storage_type]
 
   # Common setup for both local and S3
   gsub_file "Gemfile", /# gem "image_processing"/, 'gem "image_processing"'
@@ -9,7 +10,7 @@ if include_storage.downcase.start_with?("y")
   rails_command "db:migrate"
 
   if storage_type.downcase.start_with?("s3")
-    service_name = ask("What's your cloud storage service name? (e.g., linode, aws, digitalocean)")
+    service_name = $template_config[:service_name]
 
     # Add aws-sdk-s3 gem
     gem "aws-sdk-s3"
@@ -23,7 +24,7 @@ if include_storage.downcase.start_with?("y")
     gsub_file "config/environments/production.rb", /config\.active_storage\.service = :local/, "config.active_storage.service = :#{service_name}"
 
     # Ask if they want to use S3 in development too
-    use_s3_in_dev = ask("Do you want to use #{service_name} in development too? (y/n)")
+    use_s3_in_dev = $template_config[:use_s3_in_dev]
     if use_s3_in_dev.downcase.start_with?("y")
       gsub_file "config/environments/development.rb", /config\.active_storage\.service = :local/, "config.active_storage.service = :#{service_name}"
     end

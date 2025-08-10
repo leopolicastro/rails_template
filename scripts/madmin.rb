@@ -1,4 +1,5 @@
-include_madmin = ask("Do you want to install Madmin admin interface? (y/n)")
+# Get configuration from global config set in interactive_setup.rb
+include_madmin = $template_config[:include_madmin]
 
 if include_madmin.downcase.start_with?("y")
   say "Installing Madmin gem..."

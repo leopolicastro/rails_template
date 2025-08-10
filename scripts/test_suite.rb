@@ -1,6 +1,7 @@
-test_framework = ask("Do you want to use RSpec instead of Minitest? (y/n)")
-include_factories = ask("Do you want to use FactoryBot for test factories? (y/n)")
-include_shoulda = ask("Do you want to include shoulda-matchers for enhanced test matchers? (y/n)")
+# Get configuration from global config set in interactive_setup.rb
+test_framework = $template_config[:use_rspec]
+include_factories = $template_config[:include_factories]
+include_shoulda = $template_config[:include_shoulda]
 
 # Add shoulda-matchers gem if requested
 if include_shoulda.downcase.start_with?("y")
