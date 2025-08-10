@@ -43,4 +43,9 @@ after_bundle do
   apply "scripts/gemfile_cleanup.rb"
   # Run StandardRB to fix code formatting
   run "bundle exec standardrb --fix"
+
+  # Run htmlbeautifier on ERB files
+  say "Running htmlbeautifier on ERB files..."
+  run "bundle exec htmlbeautifier **/*.erb"
+  say "✅ ERB files formatted with htmlbeautifier"
 end
