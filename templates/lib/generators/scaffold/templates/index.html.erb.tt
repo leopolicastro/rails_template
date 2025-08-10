@@ -1,5 +1,5 @@
 <%% content_for :title, "<%= human_name.pluralize %>" %>
-<%%= turbo_stream_from <%= class_name %> %>
+<%%= turbo_stream_from :<%= plural_table_name %> %>
 
 <div class="w-full">
   <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
