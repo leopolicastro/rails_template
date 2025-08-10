@@ -2,64 +2,40 @@
 
 A comprehensive Rails application template that sets up a modern Rails application with authentication, testing, UI components, and development tools.
 
-## Quick Start
+## Prerequisites & Setup
 
-Create a new Rails application using this template:
+### Recommended: Copy .railsrc File
 
-```bash
-rails new myapp -m https://raw.githubusercontent.com/leopolicastro/rails_template/main/template.rb
-```
-
-Or if you have the template locally:
+For the best experience, copy the included `.railsrc` file to your home directory:
 
 ```bash
-rails new myapp -m /path/to/template.rb
+curl https://raw.githubusercontent.com/leopolicastro/rails_template/refs/heads/main/templates/.railsrc > ~/.railsrc
 ```
 
-## Features
+This configures Rails to:
 
-### 🔐 Authentication
+- Use **TailwindCSS** by default (`--css=tailwind`)
+- Skip **RuboCop** setup (`--skip-rubocop`) since this template uses StandardRB
+- Automatically apply this template to new apps
 
-- **Rails Authentication**: Generates optional authentication system with User model
-- **Ready-to-use**: Creates admin user for immediate testing (`admin@example.com` / `abc123`)
+After copying `.railsrc`, simply run:
 
-### 🎨 UI Components
+```bash
+rails new myapp
+```
 
-- **Navbar**: Simmple responsive navigation with login/logout functionality
-- **Flash Alerts**: Styled notice and alert messages with Tailwind CSS
-- **Flowbite**: Optional Flowbite integration
+### Manual Usage (without .railsrc)
 
-### 🧪 Test Suite
+If you prefer not to use `.railsrc`, run:
 
-- **Framework Choice**: Interactive selection between RSpec and Minitest
-- **Test Factories**: Optional FactoryBot integration for test data
-- **Shoulda Matchers**: Optional shoulda matchers for RSpec or Minitest
+```bash
+rails new myapp --css=tailwind --skip-rubocop -m https://raw.githubusercontent.com/leopolicastro/rails_template/refs/heads/main/template.rb
+```
 
-### 📦 Core Gems
+### Important Notes
 
-- **View Component**: Component-based view architecture
-- **Pagy**: Fast and lightweight pagination
-- **Action Text**: Rich text content editing
-- **Active Storage**: File upload and processing
-
-### 🛠 Development Tools
-
-- **StandardRB**: Ruby style guide and linter
-- **Ruby LSP**: Language server for IDE integration
-- **Hotwire LiveReload**: Automatic browser refresh during development
-- **RuboCop**: Code style enforcement with custom configuration
-
-### 📄 Content Management
-
-- **Action Text**: Rich text editing with Trix editor
-- **Active Storage**: File attachment handling
-- **Image Processing**: Built-in image variant support
-
-### 📊 Pagination
-
-- **Pagy Integration**: High-performance pagination
-- **Helper Methods**: Pre-configured in ApplicationHelper
-- **Backend Support**: Included in ApplicationController
+- **TailwindCSS**: This template is specifically designed for Tailwind CSS applications
+- **StandardRB**: Uses StandardRB instead of RuboCop for code formatting
 
 ## Interactive Setup
 
@@ -70,21 +46,13 @@ During template execution, you'll be prompted for:
 - **Authentication**: Include user authentication system
 - **Controller Name**: Customize your main controller (Home/Dashboard/Main)
 - **Active Storage**: Configure file storage service
+- **Action Text**: Configure for rich text content
 
 ## Requirements
 
 - Ruby 3.0+
 
 ## Usage
-
-### With Custom Options
-
-The template will interactively ask for your preferences:
-
-- Test framework preference
-- Whether to include FactoryBot
-- Authentication setup confirmation
-- Controller naming preferences
 
 ### Post-Setup
 
