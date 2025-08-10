@@ -14,6 +14,4 @@ inject_into_class "app/controllers/application_controller.rb", "ApplicationContr
   include Orderable
 RUBY
 
-collect_message("Table sorting system installed", :completion)
-collect_message("Safe column sorting with allowlist protection and SVG icons", :info)
-collect_message("Use sort_link(relation, :column_name, 'Display Name') in views", :instruction)
+collect_message("Sorting system installed", :completion)

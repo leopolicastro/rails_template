@@ -67,14 +67,6 @@ else
   # Minitest generators configuration
   create_file "config/initializers/generators.rb", <<~RUBY
     Rails.application.config.generators do |g|
-      g.test_framework :minitest,
-        fixtures: #{include_factories.downcase.start_with?("y") ? "false" : "true"},
-        view_tests: false,
-        helper_tests: false,
-        controller_tests: false,
-        integration_tests: true,
-        model_tests: true
-
       g.helper = false
       g.assets = false
       # g.system_tests = nil # uncomment to stop generating test/system files

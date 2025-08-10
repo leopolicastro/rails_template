@@ -16,7 +16,7 @@ if File.exist?(layout_file)
   HEAD
 
   collect_message("Dark mode support and enhanced layout configured", :completion)
-  collect_message("Turbo 8 page refreshes with morphing enabled", :info)
+  collect_message("Turbo 8 page refreshes with enabled", :info)
 else
   collect_message("Warning: #{layout_file} not found - layout setup skipped", :warning)
 end

@@ -2,7 +2,7 @@
 
 A comprehensive Rails application template that sets up a modern Rails application with authentication, testing, UI components, and development tools.
 
-## Prerequisites & Setup
+## Setup
 
 ### Recommended: Copy .railsrc File
 
