@@ -1,5 +1,6 @@
 # Copy navbar template to application views
 copy_file "templates/app/views/application/_navbar.html.erb", "app/views/application/_navbar.html.erb"
+copy_file "templates/app/views/application/_dropdown.html.erb", "app/views/application/_dropdown.html.erb"
 
 # Replace "Your App" with the actual app name
 app_title = app_name.titleize
