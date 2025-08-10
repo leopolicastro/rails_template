@@ -172,6 +172,5 @@ class GemfileParser
   end
 end
 
-say "Cleaning up Gemfile to consolidate duplicate gem groups..."
 GemfileParser.new.parse_and_cleanup
-say "✅ Gemfile cleanup completed - duplicate gem groups consolidated with comments preserved!"
+collect_message("Gemfile cleanup completed - duplicate gem groups consolidated", :completion)

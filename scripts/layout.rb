@@ -1,5 +1,3 @@
-say "Configuring application layout with dark mode support..."
-
 # Add dark mode support to application layout
 layout_file = "app/views/layouts/application.html.erb"
 
@@ -17,18 +15,8 @@ if File.exist?(layout_file)
     </head>
   HEAD
 
-  say "✅ Dark mode support added to application layout!"
-  say "✅ Updated margin classes for better spacing!"
-  say "✅ Turbo 8 enhanced page refreshes configured!"
-  say "📱 Your app now has proper dark mode background and text colors"
-  say ""
-  say "Layout improvements:"
-  say "• Automatic dark background when system/browser is in dark mode"
-  say "• Proper text contrast in dark mode"
-  say "• Better vertical spacing with margin adjustments"
-  say "• Enhanced Turbo 8 page refreshes with morphing (no flicker)"
-  say "• Scroll position preservation during page refreshes"
-  say "• Works seamlessly with scaffold templates and components"
+  collect_message("Dark mode support and enhanced layout configured", :completion)
+  collect_message("Turbo 8 page refreshes with morphing enabled", :info)
 else
-  say "⚠️  Warning: #{layout_file} not found - skipping layout setup"
+  collect_message("Warning: #{layout_file} not found - layout setup skipped", :warning)
 end

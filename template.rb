@@ -20,6 +20,14 @@ end
 
 setup_template
 
+# Initialize message collection system
+$template_messages = []
+
+# Helper method to collect important messages for display at the end
+def collect_message(message, category = :info)
+  $template_messages << {message: message, category: category}
+end
+
 # Collect all user preferences upfront
 apply "scripts/interactive_setup.rb"
 
@@ -44,11 +52,60 @@ after_bundle do
   apply "scripts/action_text.rb"
   # Clean up Gemfile to consolidate duplicate gem groups
   apply "scripts/gemfile_cleanup.rb"
-  # Run StandardRB to fix code formatting
-  run "bundle exec standardrb --fix"
+  # Run StandardRB to fix code formatting (non-blocking)
+  if system("bundle exec standardrb --fix")
+    say "✅ StandardRB initial formatting completed"
+  else
+    say "⚠️  StandardRB formatting had issues (continuing anyway)"
+  end
+  say "🔄 Preparing final summary..."
 
-  # Run htmlbeautifier on ERB files
-  say "Running htmlbeautifier on ERB files..."
-  run "bundle exec htmlbeautifier **/*.erb"
-  say "✅ ERB files formatted with htmlbeautifier"
+  # Display collected messages at the end
+  say ""
+  say "=" * 80
+  say "🎉 RAILS TEMPLATE SETUP COMPLETED!"
+  say "=" * 80
+  say ""
+
+  # Group messages by category
+  completion_messages = $template_messages.select { |m| m[:category] == :completion }
+  warning_messages = $template_messages.select { |m| m[:category] == :warning }
+  instruction_messages = $template_messages.select { |m| m[:category] == :instruction }
+  info_messages = $template_messages.select { |m| m[:category] == :info }
+
+  # Display completion messages
+  unless completion_messages.empty?
+    say "✅ INSTALLATION SUMMARY:"
+    completion_messages.each { |msg| say "   #{msg[:message]}" }
+    say ""
+  end
+
+  # Display important instructions
+  unless instruction_messages.empty?
+    say "📋 IMPORTANT NEXT STEPS:"
+    instruction_messages.each { |msg| say "   #{msg[:message]}" }
+    say ""
+  end
+
+  # Display warnings
+  unless warning_messages.empty?
+    say "⚠️  IMPORTANT NOTICES:"
+    warning_messages.each { |msg| say "   #{msg[:message]}" }
+    say ""
+  end
+
+  # Display other info messages
+  unless info_messages.empty?
+    say "ℹ️  ADDITIONAL INFORMATION:"
+    info_messages.each { |msg| say "   #{msg[:message]}" }
+    say ""
+  end
+
+  say "=" * 80
+  say "🚀 Your Rails application is ready to use!"
+  say "Run: bin/dev"
+  say "=" * 80
+
+  say ""
+  say "🎉 Template setup complete! Your Rails app is ready to go!"
 end

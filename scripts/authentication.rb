@@ -58,4 +58,8 @@ if include_auth.downcase.start_with?("y")
 
   # Run seeds to create admin user
   rails_command "db:seed"
+  
+  collect_message("Authentication system installed with admin user", :completion)
+  collect_message("Admin user created: admin@example.com / abc123", :info)
+  collect_message("AdminController available for admin-only features", :info)
 end

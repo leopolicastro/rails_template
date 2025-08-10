@@ -29,18 +29,11 @@ if include_storage.downcase.start_with?("y")
       gsub_file "config/environments/development.rb", /config\.active_storage\.service = :local/, "config.active_storage.service = :#{service_name}"
     end
 
-    # Display credentials template
-    say "\n" + "=" * 80
-    say "IMPORTANT: You need to configure your credentials!"
-    say "Run: bin/rails credentials:edit --environment=production"
-    say "Add this template to your production credentials:"
-    say "=" * 80
-    say "#{service_name}:"
-    say "  access_key_id: your_access_key_here"
-    say "  secret_access_key: your_secret_access_key_here"
-    say "  region: your_region_here"
-    say "  endpoint: your_endpoint_here"
-    say "  bucket: your_bucket_name_here"
-    say "=" * 80 + "\n"
+    # Collect credentials configuration message
+    collect_message("Active Storage with #{service_name} configured", :completion)
+    collect_message("IMPORTANT: Configure your #{service_name} credentials with: bin/rails credentials:edit --environment=production", :instruction)
+    collect_message("Add #{service_name} credentials: access_key_id, secret_access_key, region, endpoint, bucket", :instruction)
+  else
+    collect_message("Active Storage with local storage configured", :completion)
   end
 end
