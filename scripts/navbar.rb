@@ -6,9 +6,12 @@ app_title = app_name.titleize
 gsub_file "app/views/application/_navbar.html.erb", "Your App", app_title
 
 # Add navbar to application layout
-inject_into_file "app/views/layouts/application.html.erb", after: "<body>\n" do
+inject_into_file "app/views/layouts/application.html.erb", after: '<body class="dark:bg-gray-900 dark:text-white">' do
   <<~ERB
+
+
     <%= render 'navbar' %>
     
   ERB
 end
+

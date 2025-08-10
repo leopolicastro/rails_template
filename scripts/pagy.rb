@@ -14,13 +14,13 @@ end
 # Add pagy navigation to application layout
 inject_into_file "app/views/layouts/application.html.erb", after: "    </main>\n" do
   <<~ERB
-    
-    <% if defined?(@pagy) %>
-      <%# Note the double equals sign "==" which marks the output as trusted and html safe: %>
-      <div class="pagy-nav text-center py-4">
-        <%== pagy_nav(@pagy) %>
-      </div>
-    <% end %>
+      
+    <% if defined?(@pagy) && @pagy.count > 1 %>
+        <%# Note the double equals sign "==" which marks the output as trusted and html safe: %>
+        <div class="py-4 flex justify-center w-full">
+          <%== pagy_nav(@pagy) %>
+        </div>
+      <% end %>
   ERB
 end
 

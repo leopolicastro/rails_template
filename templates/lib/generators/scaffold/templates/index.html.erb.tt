@@ -1,0 +1,30 @@
+<%% content_for :title, "<%= human_name.pluralize %>" %>
+
+<div class="w-full">
+  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+    <h1 class="font-bold text-4xl dark:text-white"><%= human_name.pluralize %></h1>
+    <%%= link_to "New <%= human_name.downcase %>", new_<%= singular_route_name %>_path, class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400 text-white font-medium" %>
+  </div>
+
+  <div id="<%= plural_table_name %>" class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 space-y-5">
+    <%% if @<%= plural_table_name %>.any? %>
+      <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+        <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+          <!-- Main content area -->
+          <div class="p-4">
+            <%%= render <%= singular_table_name %> %>
+          </div>
+          
+          <!-- Footer with actions -->
+          <div class="border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 px-4 py-2 flex justify-end gap-1">
+            <%%= link_to <%= model_resource_name(singular_table_name) %>, class: "p-1.5 rounded text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600", title: "Show" do %>👁️<%% end %>
+            <%%= link_to <%= edit_helper(singular_table_name, type: :path) %>, class: "p-1.5 rounded text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600", title: "Edit" do %>✏️<%% end %>
+            <%%= button_to <%= model_resource_name %>, method: :delete, class: "p-1.5 rounded text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-800", title: "Delete", data: { turbo_confirm: "Are you sure?" } do %>🗑️<%% end %>
+          </div>
+        </div>
+      <%% end %>
+    <%% else %>
+      <p class="text-center my-10 dark:text-gray-300">No <%= human_name.downcase.pluralize %> found.</p>
+    <%% end %>
+  </div>
+</div>

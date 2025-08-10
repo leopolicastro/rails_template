@@ -1,0 +1,22 @@
+<div id="<%%= dom_id <%= singular_name %> %>" class="w-full space-y-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg dark:bg-gray-800">
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+  <div class="border-b border-gray-100 dark:border-gray-700 pb-3 last:border-b-0 last:pb-0">
+    <strong class="block font-medium mb-2 text-gray-900 dark:text-gray-200"><%= attribute.human_name %>:</strong>
+<% if attribute.attachment? -%>
+    <%%= link_to <%= singular_name %>.<%= attribute.column_name %>.filename, <%= singular_name %>.<%= attribute.column_name %>, class: "text-blue-600 dark:text-blue-400 underline hover:no-underline break-all" if <%= singular_name %>.<%= attribute.column_name %>.attached? %>
+<% elsif attribute.attachments? -%>
+    <div class="space-y-1">
+      <%% <%= singular_name %>.<%= attribute.column_name %>.each do |<%= attribute.singular_name %>| %>
+        <div><%%= link_to <%= attribute.singular_name %>.filename, <%= attribute.singular_name %>, class: "text-blue-600 dark:text-blue-400 underline hover:no-underline break-all block" %></div>
+      <%% end %>
+    </div>
+<% elsif attribute.type == :boolean -%>
+    <span class="px-2 py-1 text-xs font-medium rounded-full <%%= <%= singular_name %>.<%= attribute.column_name %>? ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300' %>">
+      <%%= <%= singular_name %>.<%= attribute.column_name %>? ? "Yes" : "No" %>
+    </span>
+<% else -%>
+    <span class="text-gray-700 dark:text-gray-300 break-words"><%%= <%= singular_name %>.<%= attribute.column_name %> %></span>
+<% end -%>
+  </div>
+<% end -%>
+</div>
