@@ -21,7 +21,7 @@ end
 
 # Copy controller template file
 controller_source = "templates/lib/templates/rails/scaffold_controller/controller.rb.tt"
-controller_target = "lib/templates/rails/scaffold_controller/controller.rb"
+controller_target = "lib/templates/rails/scaffold_controller/controller.rb.tt"
 copy_file controller_source, controller_target
 
 # Copy credentials template file
